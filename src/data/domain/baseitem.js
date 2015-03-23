@@ -86,9 +86,9 @@ export class BaseItem {
         return 'YYYY-MM-DD';
     }
     static check_date(d) {
-            var dRet = null;
+            let dRet = null;
             if ((d !== undefined) && (d !== null)) {
-                var x = moment(d);
+                let x = moment(d);
                 if (x.isValid()) {
                     dRet = x.toDate();
                 }
@@ -96,9 +96,9 @@ export class BaseItem {
             return dRet;
         } // check_date
     static string_to_date(s) {
-            var dRet = null;
+            let dRet = null;
             if ((s !== undefined) && (s !== null) && (s.trim().length > 0)) {
-                var x = moment(s, BaseItem.date_format);
+                let x = moment(s, BaseItem.date_format);
                 if (x.isValid()) {
                     dRet = x.toDate();
                 }
@@ -106,13 +106,78 @@ export class BaseItem {
             return dRet;
         } // string_to_date
     static date_to_string(d) {
-            var sRet = null;
+            let sRet = null;
             if ((d !== undefined) && (d !== null)) {
-                var x = moment(d);
+                let x = moment(d);
                 if (x.isValid()) {
                     sRet = x.format(BaseItem.date_format);
                 }
             }
             return sRet;
         } // date_to_string
+        static array_contains(cont, val) {
+          if ((cont !== undefined) && (cont !== null) && (val !== undefined) &&
+            (val !== null)) {
+            let s = val.toString().trim().toLowerCase();
+            if (s.length > 0) {
+              let n = cont.length;
+              for (let i = 0; i < n; ++i) {
+                let x = cont[i];
+                if ((x !== undefined) && (x !== null)) {
+                  let ss = x.toString().trim().toLowerCase();
+                  if (ss == s) {
+                    return true;
+                  }
+                }
+              }// i
+            }// s
+          }
+          return false;
+        }// _array_contains
+        static array_add(cont, val) {
+          if ((cont !== undefined) && (cont !== null) && (val !== undefined) &&
+            (val !== null)) {
+            let s = val.toString().trim().toLowerCase();
+            if (s.length > 0) {
+              let bFound = false;
+              var n = cont.length;
+              for (let i = 0; i < n; ++i) {
+                let x = cont[i];
+                if ((x !== undefined) && (x !== null)) {
+                  let ss = x.toString().trim().toLowerCase();
+                  if (ss == s) {
+                    bFound = true;
+                    break;
+                  }
+                }
+              }// i
+              if (!bFound) {
+                cont.push(val);
+              }
+            }// val
+          }
+        }// _array_add
+        static array_remove(cont, val) {
+          if ((cont !== undefined) && (cont !== null) && (val !== undefined) &&
+            (val !== null)) {
+            let s = val.toString().trim().toLowerCase();
+            if (s.length > 0) {
+              let index = -1;
+              let n = cont.length;
+              for (let i = 0; i < n; ++i) {
+                let x = cont[i];
+                if ((x !== undefined) && (x !== null)) {
+                  let ss  = x.toString().trim().toLowerCase();
+                  if (ss == s) {
+                    index = i;
+                    break;
+                  }
+                }
+              }// i
+              if (index >= 0) {
+                cont = cont.splice(index, 1);
+              }
+            }// val
+          }
+        }// _array_add
 } // class BaseItem
