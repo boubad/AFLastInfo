@@ -12,9 +12,9 @@ gulp.task('serve', ['build'], function(done) {
       baseDir: ['.'],
       middleware: function(req, res, next) {
         res.setHeader('Access-Control-Allow-Origin', '*');
-        if (!dbserver.process(req,res,next)){
-            next();
-        }
+        //console.log(req.url);
+        dbserver.process(req,res,next);
+        next();
       }
       
     }

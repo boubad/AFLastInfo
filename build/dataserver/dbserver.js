@@ -4,18 +4,28 @@ var url = require('url');
 //var qs = require('querystring');
 var DBManager = require('./mongodbmanager');
 //
-module.export.process = function(req, res, next) {
+function my_send(data, res) {
+        var sdata = JSON.stringify(data);
+        res.setHeader('Content-type', 'application/json');
+        //res.setHeader('Content-length', sdata.length);
+        res.write(sdata);
+        res.end();
+    } // my_send
+    //
+module.exports.process = function (req, res, next) {
     var args = url.parse(req.url, true);
     var spath = args.pathname;
+    //console.log(spath);
     var pp = spath.split('/');
     var bProc = false;
     var n = pp.length;
-    if ((n > 1) && (pp[0] == 'api')) {
+    //console.log(pp);
+    if ((n > 2) && (pp[1] == 'api')) {
         bProc = true;
-        var collectionName = pp[1];
+        var collectionName = pp[2];
         var id = null;
-        if (n > 2) {
-            id = pp[2];
+        if (n > 3) {
+            id = pp[3];
         }
         if (req.method == 'GET') {
             var query = args.query;
@@ -27,79 +37,68 @@ module.export.process = function(req, res, next) {
                 var v = query[k];
                 if (k == '$count') {
                     bcount = true;
-                }
-                else if (k == '$limit') {
+                    break;
+                } else if (k == '$limit') {
                     limit = v;
-                }
-                else if (k == '$skip') {
+                } else if (k == '$skip') {
                     skip = v;
-                }
-                else {
+                } else {
                     ppp[k] = v;
                 }
             } //
             if (bcount) {
-                DBManager.get_count(collectionName, ppp).then(function(results) {
-                    res.json({
+                DBManager.get_count(collectionName, ppp).then(function (results) {
+                    my_send({
                         count: results
-                    });
-                }).catch(function(err) {
+                    }, res);
+                }, function (err) {
+                    next(err);
+                });
+
+            } else {
+                DBManager.get_all(collectionName, ppp, skip, limit).then(function (results) {
+                    my_send(results,res);
+                },function(err){
                     next(err);
                 });
             }
-            else {
-                DBManager.get_all(collectionName, ppp, skip, limit).then(function(results) {
-                    res.json(results);
-                }).catch(function(err) {
-                    next(err);
-                });
-            }
-        }
-        else if (req.method == 'DELETE') {
-            DBManager.remove_one(collectionName, id).then(function(result) {
-                res.json((result == 1) ? {
+        } else if (req.method == 'DELETE') {
+            DBManager.remove_one(collectionName, id).then(function (result) {
+                my_send((result == 1) ? {
                     msg: 'success'
                 } : {
                     msg: 'error'
-                });
-            }).catch(function(err) {
+                }, res);
+            }, function (err) {
                 next(err);
             });
-        }
-        else if (req.method == 'POST') {
+        } else if (req.method == 'POST') {
             var body = '';
-            req.on('data', function(data) {
+            req.on('data', function (data) {
                 body += data;
-                // Too much POST data, kill the connection!
-                // if (body.length > 1e6)
-                //   request.connection.destroy();
             });
-            req.on('end', function() {
+            req.on('end', function () {
                 var post = JSON.parse(body);
-                DBManager.insert_one(collectionName, post).then(function(results) {
-                    res.json(results);
-                }).catch(function(err) {
+                DBManager.insert_one(collectionName, post).then(function (results) {
+                    my_send(results,res);
+                },function(err){
                     next(err);
                 });
             });
-        }
-        else if (req.method == 'PUT') {
+        } else if (req.method == 'PUT') {
             var body = '';
-            req.on('data', function(data) {
+            req.on('data', function (data) {
                 body += data;
-                // Too much POST data, kill the connection!
-                // if (body.length > 1e6)
-                //   request.connection.destroy();
             });
-            req.on('end', function() {
+            req.on('end', function () {
                 var post = JSON.parse(body);
-                DBManager.update_one(collectionName, id, post).then(function(result) {
-                    res.json((result == 1) ? {
+                DBManager.update_one(collectionName, id, post).then(function (result) {
+                    my_send((result == 1) ? {
                         msg: 'success'
                     } : {
                         msg: 'error'
-                    });
-                }).catch(function(err) {
+                    },res);
+                },function(err){
                     next(err);
                 });
             });
