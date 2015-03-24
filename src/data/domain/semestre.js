@@ -1,11 +1,11 @@
 // semestre.js
 //
 import {
-    IntervalItem
+    IntervallItem
 }
 from './intervalitem';
 //
-export class Semestre extends IntervalItem {
+export class Semestre extends IntervallItem {
     constructor(oMap) {
         super(oMap);
         this._anneeid = null;

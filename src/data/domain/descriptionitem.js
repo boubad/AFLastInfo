@@ -12,7 +12,7 @@ export class DescriptionItem extends BaseItem {
             this._avatarid = null;
             if ((oMap !== undefined) && (oMap !== null)) {
                 if (oMap.description !== undefined) {
-                    this.description = oMap.remarks;
+                    this.description = oMap.description;
                 }
                 if (oMap.avatarid !== undefined) {
                     this.avatarid = oMap.avatarid;

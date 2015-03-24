@@ -26,7 +26,7 @@ export class DepartementSigleNameItem extends SigleNameItem {
                 this._depid = null;
             }
         } // id
-    get has_departement_id() {
+    get has_departementid() {
         return (this.departementid !== null);
     }
     get is_storeable() {

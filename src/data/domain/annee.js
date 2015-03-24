@@ -1,11 +1,11 @@
 // annee.js
 //
 import {
-    IntervalItem
+     IntervallItem
 }
 from './intervalitem';
 //
-export class Annee extends IntervalItem {
+export class Annee extends IntervallItem {
     constructor(oMap) {
         super(oMap);
     }
@@ -16,4 +16,3 @@ export class Annee extends IntervalItem {
         return 'annees';
     }
 } // class Annee
-

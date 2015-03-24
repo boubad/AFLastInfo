@@ -27,7 +27,8 @@ export class IntervallItem extends DepartementSigleNameItem {
         return (this._start != undefined) ? this._start : null;
     }
     set startDate(d) {
-        this._start = BaseItem.check_date(d);
+       //this._start = BaseItem.check_date(d);
+       this._start = d;
     }
     get has_startDate() {
         return (this.startDate != null);
@@ -36,7 +37,8 @@ export class IntervallItem extends DepartementSigleNameItem {
         return (this._end != undefined) ? this._end : null;
     }
     set endDate(d) {
-        this._end = BaseItem.check_date(d);
+        //this._end = BaseItem.check_date(d);
+        this._end = d;
     }
     get has_endDate() {
         return (this.endDate != null);
@@ -51,8 +53,7 @@ export class IntervallItem extends DepartementSigleNameItem {
             }
         } // to_insert_map
     get is_storeable() {
-            return (super.is_storeable && this.has_startDate && this.has_endDate &&
-                (this.startDate.getTime() <= this.endDate.getTime()));
-            }
+        return (super.is_storeable && this.has_startDate && this.has_endDate && (this.startDate.getTime() <= this.endDate.getTime()));
+    }
 
-        } // class IntervakItem
+} // class IntervakItem
