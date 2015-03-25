@@ -4,11 +4,11 @@ import {
 }
 from './data/services/infodataservice';
 import {
-    SemestreViewModel
+    MatiereViewModel
 }
-from './data/model/semestreviewmodel';
+from './data/model/matiereviewmodel';
 //
-export class Semestres extends SemestreViewModel {
+export class Matieres extends MatiereViewModel {
     static inject() {
         return [InfoDataService];
     }
@@ -17,7 +17,7 @@ export class Semestres extends SemestreViewModel {
     }
     activate(params) {
         if (params.id !== undefined) {
-            this.anneeid = params.id;
+            this.uniteid = params.id;
         }
     }
-} // class Semestres
+} // class Matieres

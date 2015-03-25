@@ -58,7 +58,7 @@ export class App {
                 },
                 {
                     route: 'matieres/:id',
-                    moduleId: 'welcome',
+                    moduleId: 'matieres',
                     nav: false
                 },
                 {

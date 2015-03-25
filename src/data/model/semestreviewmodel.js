@@ -57,6 +57,21 @@ export class SemestreViewModel extends IntervallViewModel {
         });
         this.menu = mm;
     }
+    update_title() {
+            let s = '';
+            if ((this.baseTitle !== undefined) && (this.baseTitle !== null)) {
+                s = this.baseTitle.trim();
+            }
+            let u = this.annee;
+            if (u !== null){
+              s = s + ' / ' + u.sigle;
+            }
+            let d = this.departement;
+            if (d !== null) {
+                s = s + " / " + d.sigle;
+            }
+            this.title = s;
+        } // update_title
     get canSave(){
         if (!super.canSave){
             return false;
