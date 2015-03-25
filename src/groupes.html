@@ -9,13 +9,11 @@
         <div show.bind="hasInfo">
             <p class="text-success">${info}</p>
         </div>
-        <div if.bind="hasCurrent">
-            <ul class="nav nav-tabs">
-                <li repeat.for="item of menu">
-                    <a href.bind="item.refer">${item.title}</a>
-                </li>
-            </ul>
-        </div>
+        <ul class="nav nav-tabs">
+            <li repeat.for="item of menu">
+                <a href.bind="item.refer">${item.title}</a>
+            </li>
+        </ul>
         <div class="row">
             <div if.bind="hasItems" class="col-xs-4">
                 <div if.bind="hasPages">

@@ -48,12 +48,12 @@ export class App {
                 },
                 {
                     route: 'annees/:id',
-                    moduleId: 'welcome',
+                    moduleId: 'annees',
                     nav: false
                 },
                 {
                     route: 'semestres/:id',
-                    moduleId: 'welcome',
+                    moduleId: 'semestres',
                     nav: false
                 },
                 {

@@ -4,6 +4,7 @@ import {
 }
 from './uihelper';
 //
+//
 export class ViewModelBase {
     constructor(service) {
             this.dataService = service;

@@ -1,11 +1,11 @@
-// uniteviewmodel.js
-import {Unite} from '../domain/unite';
-import {DepartementSigleNameViewModel} from './depsiglenameviewmodel';
+// anneeviewmodel.js
+import {Annee} from '../domain/annee';
+import {IntervallViewModel} from './intervallviewmodel';
 //
-export class UniteViewModel extends DepartementSigleNameViewModel {
+export class AnneeViewModel extends IntervallViewModel {
    
     constructor(dataservice) {
-            super(dataservice, new Unite(), 'Unités');
+            super(dataservice, new Annee(), 'Années');
         } // constructor
     update_menu() {
         let mm = [];
@@ -18,11 +18,11 @@ export class UniteViewModel extends DepartementSigleNameViewModel {
         if ((item !== undefined) && (item !== null) && item.has_id) {
             let id = item.id;
             mm.push({
-                refer: '#matieres/' + id,
-                title: 'Matières',
-                desc: 'Matières'
+                refer: '#semestres/' + id,
+                title: 'Semestres',
+                desc: 'Semestres'
             });
         } // item
         this.menu = mm;
     }
-} // class UniteViewModel
+} // class AnneeViewModel

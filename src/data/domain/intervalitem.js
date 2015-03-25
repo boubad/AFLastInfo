@@ -38,7 +38,7 @@ export class IntervallItem extends DepartementSigleNameItem {
     }
     set endDate(d) {
         //this._end = BaseItem.check_date(d);
-        this._end = d;
+       this._end = d;
     }
     get has_endDate() {
         return (this.endDate != null);
@@ -53,7 +53,15 @@ export class IntervallItem extends DepartementSigleNameItem {
             }
         } // to_insert_map
     get is_storeable() {
-        return (super.is_storeable && this.has_startDate && this.has_endDate && (this.startDate.getTime() <= this.endDate.getTime()));
+        if ((!super.is_storeable) || (!this.startDate) || (!this.has_endDate)){
+            return false;
+        }
+        let t1 = Date.parse(this.startDate.toString());
+        let t2 = Date.parse(this.endDate.toString());
+        if (isNaN(t1) || isNaN(t2)){
+            return false;
+        }
+        return (t1 <= t2);
     }
 
 } // class IntervakItem

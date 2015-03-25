@@ -1,5 +1,10 @@
 //baseitem.js
 //
+import {
+    moment
+}
+from 'moment';
+//
 export class BaseItem {
     constructor(oMap) {
             this._id = null;
@@ -13,6 +18,40 @@ export class BaseItem {
                 }
             } // oMap
         } // constructor
+        //
+    static get date_format(){
+        return 'YYYY-MM-DD';
+    }
+    static check_date(d) {
+            let dRet = null;
+            if ((d !== undefined) && (d !== null)) {
+                let x = moment(d);
+                if (x.isValid()) {
+                    dRet = x.toDate();
+                }
+            }
+            return dRet;
+        } // check_date
+    static string_to_date(s) {
+            let dRet = null;
+            if ((s !== undefined) && (s !== null) && (s.trim().length > 0)) {
+                let x = moment(s, BaseItem.date_format);
+                if (x.isValid()) {
+                    dRet = x.toDate();
+                }
+            }
+            return dRet;
+        } // string_to_date
+    static date_to_string(d) {
+            let sRet = null;
+            if ((d !== undefined) && (d !== null)) {
+                let x = new moment(d);
+                if (x.isValid()) {
+                    sRet = x.format(BaseItem.date_format);
+                }
+            }
+            return sRet;
+        } // date_to_string
         //
     get id() {
             return (this._id !== undefined) ? this._id : null;

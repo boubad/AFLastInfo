@@ -24,6 +24,7 @@ import {
 }
 from '../../../../src/data/domain/annee';
 //
+//
 describe('BaseItem tests ', () => {
     let id = '12345';
     let rev = '4543';
@@ -31,6 +32,7 @@ describe('BaseItem tests ', () => {
         _id: id,
         _rev: rev
     });
+    
     it(' constructor test', () => {
         expect(data.id).toEqual(id);
         expect(data.rev).toEqual(rev);
