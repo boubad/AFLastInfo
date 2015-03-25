@@ -2,16 +2,15 @@ import {
     Router
 }
 from 'aurelia-router';
-import bootstrap from 'bootstrap';
 
-export class App {
+export class AdminRouter {
     static inject() {
         return [Router];
     }
     constructor(router) {
+        this.heading = 'Administration';
         this.router = router;
-        this.router.configure(config => {
-            config.title = 'Aurelia';
+        router.configure(config => {
             config.map([
                 {
                     route: ['', 'welcome'],
@@ -20,23 +19,6 @@ export class App {
                     title: 'Welcome'
                 },
                 {
-                    route: 'flickr',
-                    moduleId: 'flickr',
-                    nav: true
-                },
-                {
-                    route: 'deps',
-                    moduleId: 'departements',
-                    nav: false,
-                    title: 'Départements'
-                },
-                {
-                    route: 'admin',
-                    moduleId: 'admin',
-                    nav: true,
-                    title: 'Administration'
-                },
-                 {
                     route: 'groupes/:id',
                     moduleId: 'groupes',
                     nav: false
@@ -72,10 +54,10 @@ export class App {
                     nav: false
                 },
                 {
-                    route: 'child-router',
-                    moduleId: 'child-router',
+                    route: 'deps',
+                    moduleId: 'departements',
                     nav: true,
-                    title: 'Child Router'
+                    title: 'Départements'
                 }
       ]);
         });

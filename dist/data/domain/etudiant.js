@@ -1,9 +1,9 @@
-System.register(["./intervalitem"], function (_export) {
-    var IntervallItem, _createClass, _get, _inherits, _classCallCheck, Annee;
+System.register(["./departementperson"], function (_export) {
+    var DepartementPerson, _createClass, _get, _inherits, _classCallCheck, Etudiant;
 
     return {
-        setters: [function (_intervalitem) {
-            IntervallItem = _intervalitem.IntervallItem;
+        setters: [function (_departementperson) {
+            DepartementPerson = _departementperson.DepartementPerson;
         }],
         execute: function () {
             "use strict";
@@ -17,34 +17,35 @@ System.register(["./intervalitem"], function (_export) {
             _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
 
             //
-            Annee = _export("Annee", (function (_IntervallItem) {
-                function Annee(oMap) {
-                    _classCallCheck(this, Annee);
+            Etudiant = _export("Etudiant", (function (_DepartementPerson) {
+                function Etudiant(oMap) {
+                    _classCallCheck(this, Etudiant);
 
-                    _get(Object.getPrototypeOf(Annee.prototype), "constructor", this).call(this, oMap);
+                    _get(Object.getPrototypeOf(Etudiant.prototype), "constructor", this).call(this, oMap);
                 }
 
-                _inherits(Annee, _IntervallItem);
+                _inherits(Etudiant, _DepartementPerson);
 
-                _createClass(Annee, {
-                    type: {
+                _createClass(Etudiant, {
+                    collection_name: { // constructor
+
                         get: function () {
-                            return "annee";
+                            return "etudiants";
                         }
                     },
-                    collection_name: {
+                    type: {
                         get: function () {
-                            return "annees";
+                            return "etudiant";
                         }
                     }
                 });
 
-                return Annee;
-            })(IntervallItem));
+                return Etudiant;
+            })(DepartementPerson));
         }
     };
 });
-// annee.js
-//
-// class Annee
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRhdGEvZG9tYWluL2FubmVlLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7UUFHSyxhQUFhLGtEQUlMLEtBQUs7Ozs7QUFKYix5QkFBYSxpQkFBYixhQUFhOzs7Ozs7Ozs7Ozs7OztBQUlMLGlCQUFLO0FBQ0gseUJBREYsS0FBSyxDQUNGLElBQUksRUFBRTswQ0FEVCxLQUFLOztBQUVWLCtDQUZLLEtBQUssNkNBRUosSUFBSSxFQUFFO2lCQUNmOzswQkFIUSxLQUFLOzs2QkFBTCxLQUFLO0FBSVYsd0JBQUk7NkJBQUEsWUFBRztBQUNQLG1DQUFPLE9BQU8sQ0FBQzt5QkFDbEI7O0FBQ0csbUNBQWU7NkJBQUEsWUFBRztBQUNsQixtQ0FBTyxRQUFRLENBQUM7eUJBQ25COzs7O3VCQVRRLEtBQUs7ZUFBUyxhQUFhIiwiZmlsZSI6ImRhdGEvZG9tYWluL2FubmVlLmpzIiwic291cmNlUm9vdCI6Ii9zcmMvIn0=
+// etudiant.js
+
+// class Etudiant
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRhdGEvZG9tYWluL2V0dWRpYW50LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7UUFHSSxpQkFBaUIsa0RBSVIsUUFBUTs7OztBQUpqQiw2QkFBaUIsc0JBQWpCLGlCQUFpQjs7Ozs7Ozs7Ozs7Ozs7QUFJUixvQkFBUTtBQUNOLHlCQURGLFFBQVEsQ0FDTCxJQUFJLEVBQUU7MENBRFQsUUFBUTs7QUFFYiwrQ0FGSyxRQUFRLDZDQUVQLElBQUksRUFBRTtpQkFDZjs7MEJBSFEsUUFBUTs7NkJBQVIsUUFBUTtBQUliLG1DQUFlOzs2QkFBQSxZQUFHO0FBQ2xCLG1DQUFPLFdBQVcsQ0FBQzt5QkFDdEI7O0FBQ0csd0JBQUk7NkJBQUEsWUFBRztBQUNQLG1DQUFPLFVBQVUsQ0FBQTt5QkFDcEI7Ozs7dUJBVFEsUUFBUTtlQUFTLGlCQUFpQiIsImZpbGUiOiJkYXRhL2RvbWFpbi9ldHVkaWFudC5qcyIsInNvdXJjZVJvb3QiOiIvc3JjLyJ9

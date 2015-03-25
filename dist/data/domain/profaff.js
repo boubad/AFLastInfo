@@ -1,9 +1,9 @@
-System.register(["./intervalitem"], function (_export) {
-    var IntervallItem, _createClass, _get, _inherits, _classCallCheck, Annee;
+System.register(["./affectation"], function (_export) {
+    var Affectation, _createClass, _get, _inherits, _classCallCheck, ProfAffectation;
 
     return {
-        setters: [function (_intervalitem) {
-            IntervallItem = _intervalitem.IntervallItem;
+        setters: [function (_affectation) {
+            Affectation = _affectation.Affectation;
         }],
         execute: function () {
             "use strict";
@@ -17,34 +17,39 @@ System.register(["./intervalitem"], function (_export) {
             _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
 
             //
-            Annee = _export("Annee", (function (_IntervallItem) {
-                function Annee(oMap) {
-                    _classCallCheck(this, Annee);
+            ProfAffectation = _export("ProfAffectation", (function (_Affectation) {
+                function ProfAffectation(oMap) {
+                    _classCallCheck(this, ProfAffectation);
 
-                    _get(Object.getPrototypeOf(Annee.prototype), "constructor", this).call(this, oMap);
+                    _get(Object.getPrototypeOf(ProfAffectation.prototype), "constructor", this).call(this, oMap);
                 }
 
-                _inherits(Annee, _IntervallItem);
+                _inherits(ProfAffectation, _Affectation);
 
-                _createClass(Annee, {
+                _createClass(ProfAffectation, {
                     type: {
                         get: function () {
-                            return "annee";
+                            return "profaff";
                         }
                     },
                     collection_name: {
                         get: function () {
-                            return "annees";
+                            return "profaffs";
+                        }
+                    },
+                    is_storeable: {
+                        get: function () {
+                            return _get(Object.getPrototypeOf(ProfAffectation.prototype), "is_storeable", this) && this.has_uniteid && this.has_matiereid && this.has_enseignantid;
                         }
                     }
                 });
 
-                return Annee;
-            })(IntervallItem));
+                return ProfAffectation;
+            })(Affectation));
         }
     };
 });
-// annee.js
+// profaff.js
 //
-// class Annee
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRhdGEvZG9tYWluL2FubmVlLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7UUFHSyxhQUFhLGtEQUlMLEtBQUs7Ozs7QUFKYix5QkFBYSxpQkFBYixhQUFhOzs7Ozs7Ozs7Ozs7OztBQUlMLGlCQUFLO0FBQ0gseUJBREYsS0FBSyxDQUNGLElBQUksRUFBRTswQ0FEVCxLQUFLOztBQUVWLCtDQUZLLEtBQUssNkNBRUosSUFBSSxFQUFFO2lCQUNmOzswQkFIUSxLQUFLOzs2QkFBTCxLQUFLO0FBSVYsd0JBQUk7NkJBQUEsWUFBRztBQUNQLG1DQUFPLE9BQU8sQ0FBQzt5QkFDbEI7O0FBQ0csbUNBQWU7NkJBQUEsWUFBRztBQUNsQixtQ0FBTyxRQUFRLENBQUM7eUJBQ25COzs7O3VCQVRRLEtBQUs7ZUFBUyxhQUFhIiwiZmlsZSI6ImRhdGEvZG9tYWluL2FubmVlLmpzIiwic291cmNlUm9vdCI6Ii9zcmMvIn0=
+// class EtudAffectation
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRhdGEvZG9tYWluL3Byb2ZhZmYuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtRQUdJLFdBQVcsa0RBSUYsZUFBZTs7OztBQUp4Qix1QkFBVyxnQkFBWCxXQUFXOzs7Ozs7Ozs7Ozs7OztBQUlGLDJCQUFlO0FBQ2IseUJBREYsZUFBZSxDQUNaLElBQUksRUFBRTswQ0FEVCxlQUFlOztBQUVwQiwrQ0FGSyxlQUFlLDZDQUVkLElBQUksRUFBRTtpQkFDZjs7MEJBSFEsZUFBZTs7NkJBQWYsZUFBZTtBQUlwQix3QkFBSTs2QkFBQSxZQUFHO0FBQ1AsbUNBQU8sU0FBUyxDQUFDO3lCQUNwQjs7QUFDRyxtQ0FBZTs2QkFBQSxZQUFHO0FBQ2xCLG1DQUFPLFVBQVUsQ0FBQzt5QkFDckI7O0FBQ0csZ0NBQVk7NkJBQUEsWUFBRztBQUNmLG1DQUFRLDJCQVhILGVBQWUsc0NBV1UsSUFBSSxDQUFDLFdBQVcsSUFBSSxJQUFJLENBQUMsYUFBYSxJQUFJLElBQUksQ0FBQyxnQkFBZ0IsQ0FBRTt5QkFDbEc7Ozs7dUJBWlEsZUFBZTtlQUFTLFdBQVciLCJmaWxlIjoiZGF0YS9kb21haW4vcHJvZmFmZi5qcyIsInNvdXJjZVJvb3QiOiIvc3JjLyJ9

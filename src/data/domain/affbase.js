@@ -16,7 +16,19 @@ export class AffectationBase extends DepartementItem {
             this._profid = null;
             this._etudid = null;
             this._fullname = null;
+            this._genre = null;
+            this._date = null;
+            this._status = null;
             if ((oMap !== undefined) && (oMap !== null)) {
+              if (oMap.status !== undefined){
+                this.status = oMap.status;
+              }
+              if (oMap.date !== undefined){
+                this.date = oMap.date;
+              }
+              if (oMap.genre !== undefined) {
+                this.genre = oMap.genre;
+            }
                 if (oMap.anneeid !== undefined) {
                     this.anneeid = oMap.anneeid;
                 }
@@ -46,6 +58,34 @@ export class AffectationBase extends DepartementItem {
                 }
             } // oMap
         } // constructor
+        get status() {
+            return (this._status !== undefined) ? this._status : null;
+        }
+        set status(s) {
+            this._status = ((s !== undefined) && (s !== null) && (s.trim().length > 0)) ? s.trim().toLowerCase() : null;
+        }
+        get has_status() {
+            return (this.status !== null);
+        }
+        get date() {
+            return (this._date !== undefined) ? this._date : null;
+        }
+        set date(s) {
+            this._date = (s !== undefined) ? s : null;
+        }
+        get has_date() {
+            return (this.date !== null);
+        }
+    get genre() {
+        return (this._genre !== undefined) ? this._genre : null;
+    }
+    set genre(s) {
+        this._genre = ((s !== undefined) && (s !== null) && (s.trim().length > 0))
+        ? s.trim().toLowerCase() : null;
+    }
+    get has_genre() {
+        return (this.genre !== null);
+    }
     get anneeid() {
         return (this._anneeid !== undefined) ? this._anneeid : null;
     }
@@ -187,6 +227,15 @@ export class AffectationBase extends DepartementItem {
         //
     to_insert_map(oMap) {
             super.to_insert_map(oMap);
+            if (this.has_status){
+              oMap.status = this.status;
+            }
+            if (this.has_date){
+              oMap.date = this.date;
+            }
+            if (this.has_genre){
+              oMap.genre = this.genre;
+            }
             if (this.has_anneeid) {
                 oMap.anneeid = this.anneeid;
             }

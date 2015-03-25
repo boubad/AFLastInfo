@@ -57,6 +57,14 @@ import {
     ProfAffectation
 }
 from '../domain/profaff';
+import {
+    GroupeEvent
+}
+from '../domain/groupeevent';
+import {
+    EtudEvent
+}
+from '../domain/etudevent';
 //
 export class InfoDataService {
     static inject() {
@@ -65,7 +73,7 @@ export class InfoDataService {
     constructor(http) {
             var self = this;
             this.http = http;
-            this._baseUrl = '/api';
+            this._baseUrl = 'http://localhost:52999/api';
             this.http.configure(x => {
                 x.withBaseUrl(self._baseUrl);
                 x.withHeader('Content-Type', 'application/json');
@@ -102,8 +110,7 @@ export class InfoDataService {
                         if (bFirst) {
                             bFirst = false;
                             sRet = sRet + '?';
-                        }
-                        else {
+                        } else {
                             sRet = sRet + '&';
                         }
                         sRet = sRet + key + '=' + encodeURIComponent(v);
@@ -123,48 +130,38 @@ export class InfoDataService {
             t = t.trim().toLowerCase();
             if (t == 'person') {
                 return new PersonItem(oMap);
-            }
-            else if (t == 'attacheddoc') {
+            } else if (t == 'attacheddoc') {
                 return new AttachedDoc(oMap);
-            }
-            else if (t == 'departement') {
+            } else if (t == 'departement') {
                 return new Departement(oMap);
-            }
-            else if (t == 'prof') {
+            } else if (t == 'prof') {
                 return new Enseignant(oMap);
-            }
-            else if (t == 'groupe') {
+            } else if (t == 'groupe') {
                 return new Groupe(oMap);
-            }
-            else if (t == 'unite') {
+            } else if (t == 'unite') {
                 return new Unite(oMap);
-            }
-            else if (t == 'matiere') {
+            } else if (t == 'matiere') {
                 return new Matiere(oMap);
-            }
-            else if (t == 'annee') {
+            } else if (t == 'annee') {
                 return new Annee(oMap);
-            }
-            else if (t == 'semestre') {
+            } else if (t == 'semestre') {
                 return new Semestre(oMap);
-            }
-            else if (t == 'person') {
+            } else if (t == 'person') {
                 return new PersonItem(oMap);
-            }
-            else if (t == 'etudperson') {
+            } else if (t == 'etudperson') {
                 return new EtudPerson(oMap);
-            }
-            else if (t == 'prof') {
+            } else if (t == 'prof') {
                 return new Enseignant(oMap);
-            }
-            else if (t == 'etud') {
+            } else if (t == 'etud') {
                 return new Etudiant(oMap);
-            }
-            else if (t == 'etudaff') {
+            } else if (t == 'etudaff') {
                 return new EtudAffectation(oMap);
-            }
-            else if (t == 'profaff') {
+            } else if (t == 'profaff') {
                 return new ProfAffectation(oMap);
+            } else if (t == 'groupeevent') {
+                return new GroupeEvent(oMap);
+            } else if (t == 'etudevent') {
+                return new EtudEvent(oMap);
             }
             //
             return null;
@@ -192,7 +189,7 @@ export class InfoDataService {
                     nRet = rsp.content.count;
                 }
                 return nRet;
-            }, () => {
+            }, (err) => {
                 return 0;
             });
         } // get_items_count
@@ -211,11 +208,10 @@ export class InfoDataService {
             return this.http.get(url).then((rsp) => {
                 if (rsp.isSuccess) {
                     return this.convert_items(rsp.content);
-                }
-                else {
+                } else {
                     return [];
                 }
-            }, () => {
+            },(err)=>{
                 return [];
             });
         } // get_items
@@ -223,8 +219,7 @@ export class InfoDataService {
             return this.get_items(item).then(dd => {
                 if (dd.length > 0) {
                     return dd[0];
-                }
-                else {
+                } else {
                     return null;
                 }
             });
@@ -244,8 +239,7 @@ export class InfoDataService {
             return this.http.post(url, data).then((rsp) => {
                 if (rsp.isSuccess) {
                     return rsp.content;
-                }
-                else {
+                } else {
                     throw new Error(rsp.statusText);
                 }
             });
@@ -257,8 +251,7 @@ export class InfoDataService {
             return this.http.put(url, data).then((rsp) => {
                 if (rsp.isSuccess) {
                     return rsp.content;
-                }
-                else {
+                } else {
                     throw new Error(rsp.statusText);
                 }
             });
@@ -268,8 +261,7 @@ export class InfoDataService {
             return this.http.delete(url).then((rsp) => {
                 if (rsp.isSuccess) {
                     return rsp.content;
-                }
-                else {
+                } else {
                     throw new Error(rsp.statusText);
                 }
             });
@@ -282,19 +274,16 @@ export class InfoDataService {
                 return this.http.put(url, data).then((rsp) => {
                     if (rsp.isSuccess) {
                         return rsp.content;
-                    }
-                    else {
+                    } else {
                         throw new Error(rsp.statusText);
                     }
                 });
-            }
-            else {
+            } else {
                 let url = this.form_url(item.collection_name);
                 return this.http.post(url, data).then((rsp) => {
                     if (rsp.isSuccess) {
                         return rsp.content;
-                    }
-                    else {
+                    } else {
                         throw new Error(rsp.statusText);
                     }
                 });
