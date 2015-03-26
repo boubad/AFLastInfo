@@ -63,12 +63,12 @@ export class App {
                 },
                 {
                     route: 'profs/:id',
-                    moduleId: 'welcome',
+                    moduleId: 'enseignants',
                     nav: false
                 },
                 {
                     route: 'etuds/:id',
-                    moduleId: 'welcome',
+                    moduleId: 'etudiants',
                     nav: false
                 },
                 {
